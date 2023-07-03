@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { AiOutlineZoomIn } from 'react-icons/ai';
 
 import {
   SearchHeader,
   SearchForm,
   SearchFormButton,
-  // SearchFormButtonLable,
   SearchFormInput,
 } from 'components/Searchbar/Searchbar.styled';
 
@@ -26,7 +27,8 @@ class Searchbar extends Component {
     if (input.trim() !== '') {
       this.props.onSubmit(input);
       this.setState({ input: ''});
-    } 
+    } else {toast.error('Fill the field!');}
+    
   };
 
   render() {

@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import Searchbar from 'components/Searchbar/Searchbar';
 import ImageGallery from 'components/ImageGallery/ImageGallery';
 import Loader from 'components/Loader/Loader';
@@ -30,16 +33,16 @@ class App extends Component {
   }
 
   fetchImagesData = async () => {
-    console.log(this.state.searchQuery);
     const { searchQuery, params } = this.state;
     const { per_page } = params;
     this.setState({ isLoading: true });
 
     try {
       const { hits, totalHits } = await fetchImages(searchQuery, params);
-      // console.log(hits, totalHits);
 
-      if (hits.length === per_page) {
+      if (hits.length === 0) {
+        toast.warn('No results found');
+      } else if (hits.length === per_page) {
         this.setState(prevState => ({
           images: [...prevState.images, ...hits],
           totalHits: totalHits,
@@ -53,9 +56,9 @@ class App extends Component {
       }
     } catch (error) {
       console.error(error);
+    } finally {
+      this.setState({ isLoading: false });
     }
-
-    this.setState({ isLoading: false });
   };
 
   handleSearch = query => {
@@ -96,6 +99,8 @@ class App extends Component {
         {this.state.modalIsOpen && (
           <Modal image={this.state.selectedImage} onClose={this.closeModal} />
         )}
+
+        <ToastContainer />
       </div>
     );
   }
