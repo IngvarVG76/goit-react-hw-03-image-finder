@@ -19,7 +19,6 @@ export const SearchHeader = styled.header`
     0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
 `;
 
-
 export const SearchForm = styled.form`
   display: flex;
   align-items: center;
@@ -43,13 +42,14 @@ export const SearchFormButton = styled.button`
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   outline: none;
+  color: grey;
 
   &:hover {
     opacity: 1;
   }
 `;
 
-export const SearchFormButtonLable = styled.label`
+export const SearchFormButtonLable = styled.span`
   position: absolute;
   width: 1px;
   height: 1px;

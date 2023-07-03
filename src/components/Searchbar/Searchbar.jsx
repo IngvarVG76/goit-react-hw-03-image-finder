@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { AiOutlineZoomIn } from 'react-icons/ai';
 
 import {
   SearchHeader,
   SearchForm,
   SearchFormButton,
-  SearchFormButtonLable,
+  // SearchFormButtonLable,
   SearchFormInput,
 } from 'components/Searchbar/Searchbar.styled';
 
@@ -20,8 +21,12 @@ class Searchbar extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.onSubmit(this.state.input);
-    this.setState({ input: '' });
+    const { input } = this.state;
+
+    if (input.trim() !== '') {
+      this.props.onSubmit(input);
+      this.setState({ input: ''});
+    } 
   };
 
   render() {
@@ -29,16 +34,18 @@ class Searchbar extends Component {
       <SearchHeader>
         <SearchForm onSubmit={this.handleSubmit}>
           <SearchFormButton type="submit">
-            <SearchFormButtonLable>Search</SearchFormButtonLable>
+            <AiOutlineZoomIn />
           </SearchFormButton>
 
           <SearchFormInput
             type="text"
             autoComplete="off"
             autoFocus
+            value={this.state.input}
             placeholder="Search images and photos"
             onChange={this.handleChange}
           />
+          
         </SearchForm>
       </SearchHeader>
     );

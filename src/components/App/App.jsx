@@ -30,6 +30,7 @@ class App extends Component {
   }
 
   fetchImagesData = async () => {
+    console.log(this.state.searchQuery);
     const { searchQuery, params } = this.state;
     const { per_page } = params;
     this.setState({ isLoading: true });
