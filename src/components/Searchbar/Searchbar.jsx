@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AiOutlineZoomIn } from 'react-icons/ai';
 
@@ -26,9 +26,10 @@ class Searchbar extends Component {
 
     if (input.trim() !== '') {
       this.props.onSubmit(input);
-      this.setState({ input: ''});
-    } else {toast.error('Fill the field!');}
-    
+      this.setState({ input: '' });
+    } else {
+      toast.error('Fill the field!');
+    }
   };
 
   render() {
@@ -47,7 +48,6 @@ class Searchbar extends Component {
             placeholder="Search images and photos"
             onChange={this.handleChange}
           />
-          
         </SearchForm>
       </SearchHeader>
     );
