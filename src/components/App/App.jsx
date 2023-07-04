@@ -27,7 +27,7 @@ class App extends Component {
     ) {
       this.fetchImagesData();
     }
-  };
+  }
 
   fetchImagesData = async () => {
     this.setState({ isLoading: true });
@@ -81,14 +81,12 @@ class App extends Component {
       <div>
         <Searchbar onSubmit={this.handleSearch} />
 
-        {this.state.isLoading ? (
-          <Loader />
-        ) : (
-          <ImageGallery
-            images={this.state.images}
-            onImageClick={this.handleImageClick}
-          />
-        )}
+        {this.state.isLoading && <Loader />}
+        <ImageGallery
+          images={this.state.images}
+          onImageClick={this.handleImageClick}
+        />
+
         {this.state.images.length < this.state.totalHits && (
           <Button onClick={this.handleLoadMore}>Load More</Button>
         )}
