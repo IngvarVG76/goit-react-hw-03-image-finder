@@ -6,10 +6,10 @@ import App from 'components/App/App';
 // import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  // <React.StrictMode>
-  <ThemeProvider theme={theme}>
-    <Global styles={GlobalStyles} />
-    <App />
-  </ThemeProvider>
-  // </React.StrictMode>
+  <React.StrictMode>
+    <ThemeProvider theme={theme}>
+      <Global styles={GlobalStyles} />
+      <App />
+    </ThemeProvider>
+  </React.StrictMode>
 );
